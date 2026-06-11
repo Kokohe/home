@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KubeLab — Kubernetes Training Environment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Top bar -->
+<header class="topbar">
+  <div class="topbar-logo">
+    <svg class="k8s-wheel" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="48" stroke="#326CE5" stroke-width="4"/>
+      <circle cx="50" cy="50" r="12" fill="#326CE5"/>
+      <line x1="50" y1="38" x2="50" y2="10" stroke="#326CE5" stroke-width="5" stroke-linecap="round"/>
+      <line x1="50" y1="62" x2="50" y2="90" stroke="#326CE5" stroke-width="5" stroke-linecap="round"/>
+      <line x1="38" y1="50" x2="10" y2="50" stroke="#326CE5" stroke-width="5" stroke-linecap="round"/>
+      <line x1="62" y1="50" x2="90" y2="50" stroke="#326CE5" stroke-width="5" stroke-linecap="round"/>
+      <line x1="41" y1="41" x2="20" y2="20" stroke="#326CE5" stroke-width="5" stroke-linecap="round"/>
+      <line x1="59" y1="59" x2="80" y2="80" stroke="#326CE5" stroke-width="5" stroke-linecap="round"/>
+      <line x1="59" y1="41" x2="80" y2="20" stroke="#326CE5" stroke-width="5" stroke-linecap="round"/>
+      <line x1="41" y1="59" x2="20" y2="80" stroke="#326CE5" stroke-width="5" stroke-linecap="round"/>
+    </svg>
+    <span>Kube<span class="accent">Lab</span></span>
+  </div>
+  <div class="topbar-cluster">
+    <div class="status-dot"></div>
+    <span>training-cluster-01</span>
+    <span class="topbar-tag">minikube</span>
+    <span class="topbar-tag">k8s v1.29</span>
+  </div>
+</header>
+
+<!-- Workspace -->
+<div class="workspace">
+
+  <!-- Left: command panel -->
+  <nav class="commands-panel" aria-label="kubectl commands">
+
+    <div class="panel-section">
+      <div class="section-label">Workloads</div>
+      <button class="cmd-btn" onclick="runCommand('pod')" title="kubectl run nginx --image=nginx">
+        <span class="cmd-icon icon-pod">▣</span>
+        <span class="cmd-label">Create Pod</span>
+        <span class="cmd-shorthand">pod</span>
+      </button>
+      <button class="cmd-btn" onclick="runCommand('deploy')" title="kubectl create deployment">
+        <span class="cmd-icon icon-deploy">⊞</span>
+        <span class="cmd-label">Deployment</span>
+        <span class="cmd-shorthand">deploy</span>
+      </button>
+      <button class="cmd-btn" onclick="runCommand('replicaset')" title="kubectl create replicaset">
+        <span class="cmd-icon icon-deploy">⊟</span>
+        <span class="cmd-label">ReplicaSet</span>
+        <span class="cmd-shorthand">rs</span>
+      </button>
+    </div>
+
+    <div class="panel-section">
+      <div class="section-label">Networking</div>
+      <button class="cmd-btn" onclick="runCommand('svc-clusterip')" title="kubectl expose --type=ClusterIP">
+        <span class="cmd-icon icon-svc">⬡</span>
+        <span class="cmd-label">ClusterIP</span>
+        <span class="cmd-shorthand">svc</span>
+      </button>
+      <button class="cmd-btn" onclick="runCommand('svc-nodeport')" title="kubectl expose --type=NodePort">
+        <span class="cmd-icon icon-svc">⬡</span>
+        <span class="cmd-label">NodePort</span>
+        <span class="cmd-shorthand">svc</span>
+      </button>
+      <button class="cmd-btn" onclick="runCommand('svc-lb')" title="kubectl expose --type=LoadBalancer">
+        <span class="cmd-icon icon-svc">⬡</span>
+        <span class="cmd-label">LoadBalancer</span>
+        <span class="cmd-shorthand">svc</span>
+      </button>
+      <button class="cmd-btn" onclick="runCommand('ingress')" title="kubectl create ingress">
+        <span class="cmd-icon icon-svc">◈</span>
+        <span class="cmd-label">Ingress</span>
+        <span class="cmd-shorthand">ing</span>
+      </button>
+    </div>
+
+    <div class="panel-section">
+      <div class="section-label">Configuration</div>
+      <button class="cmd-btn" onclick="runCommand('configmap')" title="kubectl create configmap">
+        <span class="cmd-icon icon-cfg">≡</span>
+        <span class="cmd-label">ConfigMap</span>
+        <span class="cmd-shorthand">cm</span>
+      </button>
+      <button class="cmd-btn" onclick="runCommand('secret')" title="kubectl create secret">
+        <span class="cmd-icon icon-cfg">🔑</span>
+        <span class="cmd-label">Secret</span>
+        <span class="cmd-shorthand">sec</span>
+      </button>
+    </div>
+
+    <div class="panel-section">
+      <div class="section-label">Cluster</div>
+      <button class="cmd-btn" onclick="runCommand('namespace')" title="kubectl create namespace">
+        <span class="cmd-icon icon-ns">◻</span>
+        <span class="cmd-label">Namespace</span>
+        <span class="cmd-shorthand">ns</span>
+      </button>
+      <button class="cmd-btn" onclick="runCommand('pvc')" title="kubectl create pvc">
+        <span class="cmd-icon icon-cfg">⬜</span>
+        <span class="cmd-label">PersistentVolumeClaim</span>
+        <span class="cmd-shorthand">pvc</span>
+      </button>
+    </div>
+
+    <div class="panel-section">
+      <div class="section-label">Inspect</div>
+      <button class="cmd-btn" onclick="runCommand('get-all')" title="kubectl get all">
+        <span class="cmd-icon icon-deploy">⋮⋮</span>
+        <span class="cmd-label">Get All Resources</span>
+        <span class="cmd-shorthand">get</span>
+      </button>
+      <button class="cmd-btn" onclick="runCommand('describe')" title="kubectl describe">
+        <span class="cmd-icon icon-deploy">𝒊</span>
+        <span class="cmd-label">Describe Latest</span>
+        <span class="cmd-shorthand">desc</span>
+      </button>
+    </div>
+
+    <div class="panel-section">
+      <div class="section-label">Danger Zone</div>
+      <button class="cmd-btn" onclick="runCommand('delete-last')" title="kubectl delete (last resource)">
+        <span class="cmd-icon icon-del">✕</span>
+        <span class="cmd-label">Delete Latest</span>
+        <span class="cmd-shorthand">del</span>
+      </button>
+      <button class="cmd-btn" onclick="runCommand('delete-all')" title="kubectl delete all --all">
+        <span class="cmd-icon icon-del">⊘</span>
+        <span class="cmd-label">Delete All</span>
+        <span class="cmd-shorthand">del all</span>
+      </button>
+    </div>
+
+  </nav>
+
+  <!-- Centre: visualiser -->
+  <main class="visualiser">
+    <div class="viz-toolbar">
+      <div class="viz-toolbar-title">
+        cluster view
+        <span class="ns-badge">default</span>
+      </div>
+      <div class="viz-filter-btns">
+        <button class="filter-btn active" onclick="setFilter('all', this)">All</button>
+        <button class="filter-btn" onclick="setFilter('pod', this)">Pods</button>
+        <button class="filter-btn" onclick="setFilter('deploy', this)">Deployments</button>
+        <button class="filter-btn" onclick="setFilter('svc', this)">Services</button>
+        <button class="filter-btn" onclick="setFilter('cfg', this)">Config</button>
+      </div>
+    </div>
+
+    <div class="viz-canvas" id="vizCanvas">
+      <div class="empty-state" id="emptyState">
+        <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+          <circle cx="28" cy="28" r="27" stroke="#326CE5" stroke-width="2" stroke-dasharray="6 3"/>
+          <circle cx="28" cy="28" r="7" fill="#326CE5" fill-opacity="0.4"/>
+          <line x1="28" y1="21" x2="28" y2="8" stroke="#326CE5" stroke-width="3" stroke-linecap="round"/>
+          <line x1="28" y1="35" x2="28" y2="48" stroke="#326CE5" stroke-width="3" stroke-linecap="round"/>
+          <line x1="21" y1="28" x2="8" y2="28" stroke="#326CE5" stroke-width="3" stroke-linecap="round"/>
+          <line x1="35" y1="28" x2="48" y2="28" stroke="#326CE5" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <div class="empty-title">No resources deployed</div>
+        <div class="empty-hint">← Choose a command to get started</div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Right: terminal -->
+  <aside class="terminal-panel" aria-label="kubectl terminal output">
+    <div class="term-header">
+      <div class="term-dots">
+        <div class="term-dot dot-red"></div>
+        <div class="term-dot dot-yellow"></div>
+        <div class="term-dot dot-green"></div>
+      </div>
+      <div class="term-title">kubectl — zsh</div>
+    </div>
+    <div class="term-body" id="termBody">
+      <div class="term-line"><span class="term-out-muted"># KubeLab interactive training environment</span></div>
+      <div class="term-line"><span class="term-out-muted"># Cluster: training-cluster-01 (minikube)</span></div>
+      <div class="term-spacer"></div>
+      <div class="term-line"><span class="term-prompt">➜</span> <span class="term-cmd">kubectl cluster-info</span></div>
+      <div class="term-line"><span class="term-out-blue">Kubernetes control plane</span> <span class="term-out">is running at</span></div>
+      <div class="term-line"><span class="term-out">  https://127.0.0.1:8443</span></div>
+      <div class="term-line"><span class="term-out-blue">CoreDNS</span> <span class="term-out">is running at</span></div>
+      <div class="term-line"><span class="term-out">  https://127.0.0.1:8443/api/v1/namespaces/</span></div>
+      <div class="term-line"><span class="term-out">  kube-system/services/kube-dns:dns/proxy</span></div>
+      <div class="term-spacer"></div>
+      <div class="term-line"><span class="term-prompt">➜</span> <span class="term-cursor"></span></div>
+    </div>
+  </aside>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
