@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Colony Script</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="topbar">
+  <h1>⬡ COLONY SCRIPT</h1>
+  <div class="res-pill"><div class="dot" style="background:#fbbf24"></div><span id="res-food">0</span> food</div>
+  <div class="res-pill"><div class="dot" style="background:#94a3b8"></div><span id="res-wood">0</span> wood</div>
+  <div class="res-pill"><div class="dot" style="background:#60a5fa"></div><span id="res-stone">0</span> stone</div>
+  <div class="res-pill"><div class="dot" style="background:#a78bfa"></div><span id="res-iron">0</span> iron</div>
+  <span id="tick-display">tick: 0</span>
+  <button class="btn" id="btn-pause">⏸ Pause</button>
+  <button class="btn" id="btn-speed">1×</button>
+</div>
+
+<div id="main">
+  <div id="sidebar">
+    <div id="sidebar-tabs">
+      <div class="stab active" data-tab="colonists">Colonists</div>
+      <div class="stab" data-tab="log">Log</div>
+      <div class="stab" data-tab="docs">Docs</div>
+    </div>
+    <div id="sidebar-content">
+      <div id="tab-colonists"></div>
+      <div id="tab-log" style="display:none"></div>
+      <div id="tab-docs" style="display:none"></div>
+    </div>
+  </div>
+
+  <div id="map-area">
+    <div id="canvas-wrap">
+      <canvas id="map"></canvas>
+    </div>
+    <div id="camera-hint">Arrow keys to pan · +/- zoom</div>
+  </div>
+
+  <div id="right-panel">
+    <!-- Script Editor (top half) -->
+    <div id="editor-panel">
+      <div id="editor-header">
+        <h2>🖥 Colonist Script</h2>
+        <span id="editor-colonist-name">— none selected —</span>
+      </div>
+      <div class="api-hint">
+<b>API:</b> move(x,y) · moveTo(type) · mine() · chop() · farm() · harvest()
+deposit() · build() · rest() · random(n)
+<b>self</b>.x · <b>self</b>.y · <b>self</b>.hunger · <b>self</b>.energy · <b>self</b>.carrying
+<b>state</b>.anything — persistent across ticks (e.g. state.phase = 'mining')
+<b>map</b>.get(x,y) → {type,item} · <b>map</b>.find(type,radius)
+<b>colony</b>.food · <b>colony</b>.wood · <b>colony</b>.stone · <b>colony</b>.iron
+<b>log</b>("msg") — script runs every tick
+      </div>
+      <textarea id="script-editor" spellcheck="false"></textarea>
+      <div id="editor-footer">
+        <button class="btn active" id="btn-apply">▶ Apply Script</button>
+        <button class="btn" id="btn-template">Templates</button>
+        <span id="run-status"></span>
+      </div>
+    </div>
+
+    <!-- Command Scripts Panel (bottom half) -->
+    <div id="cmd-panel">
+      <div id="cmd-header">
+        <h2>⚡ Command Scripts</h2>
+        <button class="btn btn-sm" id="btn-new-cmd">+ New</button>
+      </div>
+      <div id="cmd-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Command Script Modal -->
+<div id="cmd-modal" style="display:none">
+  <div id="cmd-modal-box">
+    <div id="cmd-modal-header">
+      <span id="cmd-modal-title">New Command Script</span>
+      <button class="btn btn-sm" id="btn-cmd-close">✕</button>
+    </div>
+    <div id="cmd-modal-body">
+      <input id="cmd-name-input" type="text" placeholder="Script name..." maxlength="30">
+      <div id="cmd-colonist-picker">
+        <div class="cmd-label">Assign colonists:</div>
+        <div id="cmd-colonist-checkboxes"></div>
+      </div>
+      <textarea id="cmd-script-editor" spellcheck="false" placeholder="// Script runs instantly when executed
+move(0, 0);
+log('Reporting to base!');"></textarea>
+      <div id="cmd-modal-footer">
+        <button class="btn active" id="btn-cmd-save">Save</button>
+        <button class="btn danger" id="btn-cmd-delete" style="display:none">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="game.js"></script>
+<script src="colonists.js"></script>
+<script src="scripting.js"></script>
+<script src="templates.js"></script>
+<script src="commands.js"></script>
+<script src="docs.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
