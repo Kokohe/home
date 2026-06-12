@@ -1,0 +1,110 @@
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+main {
+  flex: 1;
+}
+
+/* Home layout */
+.home-grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 48px;
+  padding: 32px 48px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .home-grid {
+    grid-template-columns: 1fr;
+    padding: 24px 20px;
+  }
+}
+
+/* About */
+.about-section h2 {
+  margin-top: 0;
+}
+
+.about-section h3 {
+  margin-top: 1.75rem;
+}
+
+.cert-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  counter-reset: cert-counter;
+}
+
+.cert-list li {
+  counter-increment: cert-counter;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #222;
+}
+
+.cert-list li::before {
+  content: counter(cert-counter);
+  font-size: 0.75rem;
+  color: #555;
+  min-width: 18px;
+}
+
+.cert-name {
+  font-weight: 500;
+  color: #8d8d8d;
+}
+
+.cert-tag {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+/* Feedback */
+.feedback-section {
+  margin-top: 2rem;
+  padding: 16px 20px;
+  border-left: 3px solid #333;
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+.feedback-section a {
+  color: #aaa;
+  text-decoration: none;
+}
+
+.feedback-section a:hover {
+  color: #fff;
+}
+
+/* Blog sidebar */
+.home-right h2 {
+  margin-top: 0;
+}
+
+.blog-post-card {
+  padding: 14px 0;
+  border-bottom: 1px solid #222;
+}
+
+.post-date {
+  font-size: 0.75rem;
+  color: #555;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.post-title {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #ccc;
+}

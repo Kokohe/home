@@ -1,25 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
-    <link rel="stylesheet" href="./website/css/styles.css">
-    <link rel="icon" href="./favicon.ico" type="image/x-icon">
-  </head>
-  <body>
-    <main>
-        <h1>Training!</h1>
-        <a href="https://kubernetes.training.bgh-01.com">kubernetes</a><br>
-        <a href="https://C.training.bgh-01.com">C</a><br>
-        <a href="https://C-Plus-Plus.training.bgh-01.com">C++</a><br>
-        <a href="https://Network-Plus.training.bgh-01.com">Network+</a><br>
-        <h1>Projects</h1>
-        <a href="https://Signals.Projects.bgh-01.com">Signals</a>
 
-        
+    <title>Home</title>
+
+    <link rel="stylesheet" href="website/css/footer.css">
+    <link rel="stylesheet" href="website/css/navbar.css">
+    <link rel="stylesheet" href="website/css/styles.css">
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="nav-links">
+        <div class="nav-item">
+          <button class="nav-btn">Projects ▾</button>
+          <div class="dropdown">
+            <a href="https://signals.projects.bgh-01.com">Signals</a>
+            <a href="https://xr.projects.bgh-01.com">XR body network</a>
+            <a href="https://lildudes.projects.bgh-01.com">Lil dudes coding colony</a>
+            <a href="https://nixos.projects.bgh-01.com">nixOS</a>
+
+          </div>
+        </div>
+    
+        <div class="nav-item">
+          <button class="nav-btn">Training ▾</button>
+          <div class="dropdown">
+            <a href="https://network-plus.training.bgh-01.com">Network+</a>
+            <a href="https://lfcs.training.bgh-01.com">LFCS</a>
+            <a href="https://kubernetes.training.bgh-01.com">CKA</a>
+            <a href="https://c.training.bgh-01.com">C</a>
+            <a href="https://c-plus-plus.training.bgh-01.com">C++</a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <button class="nav-btn">Blog ▾</button>
+          <div class="dropdown">
+            <a href="#">Coming soon</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <div class="home-grid">
+        <div class="home-left">
+          <section class="about-section">
+            <h2>About</h2>
+            <p>
+              <strong> Welcome to bgh-01 - learning and open source project hub.</strong><br>
+              The purpose of this site is to guide people through a clear skill progression pathway
+              and demonstrate real world applications and projects, hopefully to inspire and demistify
+              technical development processes. Feel free to use anything from this site, and reach out 
+              if you have any feedback, questions or ideas for the projects mentioned.
+            </p>
+
+            <h3>Certifications &amp; Training</h3>
+            <ol class="cert-list">
+              <li>
+                <a class="cert-name" href="https://network-plus.training.bgh-01.com">WIP - CompTIA Network+</a>
+                <span class="cert-tag">Networking fundamentals</span>
+              </li>
+              <li>
+                <a class="cert-name" href="https://lfcs.training.bgh-01.com">WIP - LFCS</a>
+                <span class="cert-tag">Linux Foundation Certified SysAdmin</span>
+              </li>
+              <li>
+                <a class="cert-name" href="https://kubernetes.training.bgh-01.com">WIP - CKA</a>
+                <span class="cert-tag">Certified Kubernetes Administrator</span>
+              <li>
+                <a class="cert-name" href="https://c.training.bgh-01.com">WIP - C</a>
+                <span class="cert-tag">Systems fundamentals</span></li>
+              <li>
+                <a class="cert-name" href="https://c-plus-plus.training.bgh-01.com">WIP - C++</a>
+                <span class="cert-tag">OOP &amp; memory management</span>
+              </li>
+            </ol>
+            <h3>Projects</h3>
+            <ol class="cert-list">
+              <li>
+                <a class="cert-name" href="">WIP - XR body network</a>
+                <span class="cert-tag">linux terminals projected into Viture XR glasses, hosted on Android Virtualisation Framework (NixOS).</span>
+              </li>
+              <li>
+                <a class="cert-name" href="">WIP - Signals intellegence</a>
+                <span class="cert-tag">A suite to view and process open source data, such as radio, flight, maritime and satalite.</span>
+              </li>
+              <li>
+                <a class="cert-name" href="">WIP - Lil dudes coding colony</a>
+                <span class="cert-tag">A little game inspired by the automation of <i>the farmer was replaced</i> and colony sims like <i>rimworld.</i></span>
+              </li>
+              <li>
+                <a class="cert-name" href="">WIP - NixOS</a>
+                <span class="cert-tag">Like any linux user, I will gladly die on the hill that mine is the best and block my ears to all criticism.</span>
+              </li>
+            </ol>
+          <section class="feedback-section">
+            <p>Any ideas or feedback? Please reach out to <a href="mailto:contact@bgh-01.com">contact@bgh-01.com</a></p>
+          </section>
+        </div>
+
+        <aside class="home-right">
+          <h2>Latest Posts</h2>
+          <div class="blog-post-list">
+            <div class="blog-post-card">
+              <span class="post-date">Coming soon</span>
+              <p class="post-title">No posts yet — check back later.</p>
+            </div>
+          </div>
+        </aside>
+      </div>
     </main>
-    <script src="index.js"></script>
+
+    <footer>
+      <div class="footer-links">
+        <div class="footer-col">
+          <span class="footer-label">Contact</span>
+          <a href="mailto:contact@bgh-01.com">contact@bgh-01.com</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-label">Navigation</span>
+          <a href="https://home.bgh-01.com">Home</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-label">Source Code</span>
+          <a href="https://github.com/kokohe/home" target="_blank">GitHub</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-label">Legal</span>
+          <a href="" target="">Terms of Service</a>
+          <a href="" target="">Conditions</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="website/js/script.js"></script>
   </body>
 </html>
